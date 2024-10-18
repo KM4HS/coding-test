@@ -1,13 +1,19 @@
 class Solution {
     public int solution(String s) {
-        String numSign = s.substring(0,1);
-        if(numSign.equals("+")){
-            return Integer.parseInt(s.substring(1));
-        }else if(numSign.equals("-")){
-            return -Integer.parseInt(s.substring(1));
+        int answer = 0;
+        boolean negative = false;
+        
+        if(s.charAt(0) == '-'){
+            negative = true;
         }
-        else {
-            return Integer.parseInt(s);
+        
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch == '+'||ch == '-'){
+                continue;
+            }
+            answer = answer*10 + (ch - '0');
         }
+        return (negative)? -answer:answer;
     }
 }
